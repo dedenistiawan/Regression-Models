@@ -1,0 +1,259 @@
+# Pengantar R {#sec-dasar-R}
+
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+## Install R dan R Studio
+
+Untuk memulai menggunakan R, langkah pertama adalah menginstal perangkat lunaknya. Berikut langkah-langkah instalasinya:
+
+1.  Buka situs resmi [**CRAN**](https://cran.r-project.org) (Comprehensive R Archive Network)
+
+2.  Pilih sistem operasi yang digunakan (Windows, macOS, atau Linux).
+
+3.  Unduh file instalasi dan ikuti instruksi instalasinya. Unduh dan Instal RStudio
+
+Setelah R terinstal, unduh RStudio, sebuah Integrated Development Environment (IDE) untuk R, dari <https://www.rstudio.com>. Pilih versi gratis (RStudio Desktop) dan instal sesuai dengan sistem operasi Anda.
+
+RStudio adalah IDE yang dirancang khusus untuk mempermudah penggunaan R. Dibandingkan dengan antarmuka dasar R, RStudio menawarkan pengalaman pengguna yang lebih nyaman melalui fitur-fitur berikut:
+
+-   **Script Editor**: Memungkinkan penulisan dan pengelolaan skrip dengan mudah.
+
+-   **Console**: Tempat menjalankan perintah R secara langsung.
+
+-   **Environment Pane**: Menampilkan variabel, data, dan objek yang sedang aktif.
+
+-   **Plots Pane**: Menampilkan hasil visualisasi seperti grafik dan plot.
+
+-   **Packages Pane**: Memudahkan instalasi dan pengelolaan pustaka.
+
+[**CRAN**](https://cran.r-project.org) (Comprehensive R Archive Network) adalah repositori resmi yang menyimpan ribuan paket tambahan untuk memperluas fungsi R. Paket-paket ini mencakup berbagai bidang aplikasi, seperti statistik, visualisasi, dan machine learning. Untuk mengunduh dan menginstal paket di R, langkah-langkahnya adalah sebagai berikut:
+
+1.  Buka RStudio dan pastikan Anda terhubung ke internet.
+
+2.  Gunakan perintah `install.packages()` untuk menginstal library atau paket.
+
+3.  Setelah instalasi selesai, muat paket ke dalam sesi kerja menggunakan perintah `library()`. Contoh:
+
+```{r}
+library(ggplot2)
+```
+
+Paket yang diunduh akan otomatis tersimpan di komputer Anda dan dapat digunakan kapan saja tanpa perlu mengunduh ulang. Dengan CRAN, pengguna dapat dengan mudah menyesuaikan R untuk berbagai kebutuhan analisis data.
+
+## Dasar-Dasar R
+
+**Objek dan Variabel** Dalam R, **objek** adalah entitas yang menyimpan data atau hasil perhitungan. Objek bisa berupa angka, teks, tabel, atau bahkan fungsi. Setiap objek di R memiliki nama yang digunakan untuk merujuknya dalam kode, dan objek ini dapat disimpan ke dalam variabel untuk memudahkan manipulasi data.
+
+**Variabel** adalah nama yang diberikan untuk menyimpan nilai atau objek. Variabel di R tidak memerlukan deklarasi tipe data sebelumnya, yang berarti kita dapat langsung menyimpan nilai apapun ke dalam variabel tersebut.
+
+Variabel dapat dibuat dengan cara memberi nama pada objek dan menggunakan operator penugasan `<-` untuk menyimpan nilai ke dalam variabel.
+
+```{r}
+x <- 5      # Menyimpan angka 5 dalam variabel x
+nama <- "John"  # Menyimpan string "John" dalam variabel nama
+```
+
+Di atas, `x` dan `nama` adalah variabel yang menyimpan objek berupa angka dan teks.
+
+**Mengakses Variabel** Setelah variabel dibuat, kita dapat mengakses nilai yang tersimpan dalam variabel tersebut dengan cukup menyebutkan nama variabel:
+
+```{r}
+print(x)    # Output: 5
+print(nama) # Output: "John"
+```
+
+## Tipe Data dalam Variabel
+
+Variabel di R dapat menyimpan berbagai tipe data, antara lain:
+
+-   **Numerik:** Menyimpan angka dengan atau tanpa desimal.
+
+-   **Karakter (String):** Menyimpan teks.
+
+-   **Logika:** Menyimpan nilai TRUE atau FALSE.
+
+-   **Faktor:** Digunakan untuk variabel kategorikal.
+
+-   **Daftar (List), Vektor, Matriks, dan Data Frame**: Struktur data kompleks yang menyimpan koleksi data.
+
+Contoh variabel dengan berbagai tipe data:
+
+```{r}
+angka <- 10          # Numerik
+nama <- "Andi"       # Karakter
+status <- TRUE       # Logika
+kategori <- factor(c("A", "B", "A", "C"))  # Faktor
+```
+
+### Operasi dengan Variabel
+
+**Operasi dengan Variabel** Variabel dapat digunakan dalam operasi matematika dan logika. Misalnya, jika kita memiliki dua variabel `a` dan `b`, kita bisa melakukan operasi penjumlahan:
+
+```{r}
+a <- 3
+b <- 4
+hasil <- a + b  # Menyimpan hasil penjumlahan a dan b ke dalam variabel hasil
+print(hasil)    # Output: 7
+```
+
+### Menimpa dan Mengubah Nilai Variabel
+
+```{r}
+x <- 5      # x sekarang bernilai 5
+x <- 10     # x sekarang bernilai 10 (nilai sebelumnya akan tertimpa)
+print(x)    # Output: 10
+```
+
+## Struktur Data pada R
+
+R menyediakan berbagai jenis struktur data untuk mengelola dan memanipulasi data dalam berbagai bentuk. Pemahaman tentang struktur data di R sangat penting karena memungkinkan kita untuk menyimpan dan bekerja dengan data yang lebih kompleks. Beberapa struktur data dasar yang tersedia di R meliputi vektor, matriks, data frame, dan list.
+
+### Vektor
+
+Vektor adalah struktur data paling dasar di R. Vektor adalah sekumpulan elemen yang memiliki tipe data yang sama, seperti angka, karakter, atau logika. Vektor dapat dibuat menggunakan fungsi `c()`, yang berarti combine atau concatenate. Contoh pembuatan vektor:
+
+```{r}
+vektor_angka <- c(1, 2, 3, 4, 5)      # Vektor angka
+vektor_karakter <- c("A", "B", "C")   # Vektor karakter
+vektor_logika <- c(TRUE, FALSE, TRUE)  # Vektor logika
+```
+
+Mengakses elemen vektor:
+
+```{r}
+vektor_angka[1]   # Mengakses elemen pertama (1)
+vektor_karakter[2] # Mengakses elemen kedua ("B")
+```
+
+Vektor bisa berupa vektor numerik, vektor karakter, atau vektor logika, tergantung tipe data elemen yang ada di dalamnya.
+
+### Matriks
+
+Matriks adalah struktur data dua dimensi, yang berarti memiliki baris dan kolom. Semua elemen dalam matriks harus memiliki tipe data yang sama, seperti vektor. Contoh pembuatan matriks:
+
+```{r}
+matriks <- matrix(1:6, nrow = 2, ncol = 3)  # Matriks 2x3 dengan elemen dari 1 hingga 6
+print(matriks)
+```
+
+### Data Frame
+
+Data frame adalah struktur data yang lebih kompleks dan sering digunakan dalam analisis data. Data frame terdiri dari kolom-kolom yang dapat memiliki tipe data yang berbeda (numerik, karakter, logika, dll.), mirip dengan tabel dalam basis data atau spreadsheet. Contoh pembuatan data frame:
+
+```{r}
+df <- data.frame(
+  Nama = c("John", "Alice", "Bob"),
+  Umur = c(25, 30, 22),
+  Status = c("Single", "Married", "Single")
+)
+print(df)
+```
+
+### List
+
+List adalah struktur data yang paling fleksibel di R. List dapat menyimpan berbagai jenis objek yang berbeda dalam satu struktur data, termasuk vektor, matriks, data frame, atau bahkan fungsi. Contoh pembuatan list:
+
+```{r}
+daftar <- list(
+  Nama = "John",
+  Umur = 25,
+  Nilai = c(90, 85, 88)
+)
+print(daftar)
+```
+
+### Faktor
+
+Faktor adalah tipe data di R yang digunakan untuk menyimpan data kategorikal. Faktor menyimpan data dalam bentuk level yang dapat digunakan untuk analisis kategorikal, seperti dalam model regresi atau analisis statistik lainnya. Contoh pembuatan faktor:
+
+```{r}
+status <- factor(c("Single", "Married", "Single", "Divorced"))
+print(status)
+```
+
+**Berikut adalah perbandingan antara berbagai struktur data di R:**
+
+| Struktur Data | Deskripsi | Contoh Penggunaan |
+|------------------------|------------------------|------------------------|
+| Vektor | Sekumpulan elemen dengan tipe data yang sama | Menyimpan data numerik atau karakter |
+| Matriks | Struktur dua dimensi (baris dan kolom) | Menyimpan data dalam bentuk tabel numerik |
+| Data Frame | Tabel dua dimensi dengan tipe data berbeda | Menyimpan data observasi dan variabel |
+| List | Koleksi elemen dengan tipe data yang berbeda | Menyimpan objek dengan tipe data campuran |
+| Faktor | Data kategorikal dengan level yang terbatas | Mengelompokkan data kategorikal |
+
+## Fungsi dan Pemrograman di R
+
+R menyediakan berbagai cara untuk mendefinisikan dan menggunakan fungsi dalam pemrograman. Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu, menerima input, dan memberikan output. Pemrograman berbasis fungsi memungkinkan pengguna untuk menulis kode yang lebih modular dan terstruktur, yang memudahkan pemeliharaan dan pengembangan program.
+
+### Definisi Fungsi
+
+Fungsi di R dibuat menggunakan kata kunci `function()`. Fungsi ini dapat menerima satu atau lebih argumen dan menghasilkan nilai output. Contoh pembuatan fungsi:
+
+```{r}
+# Fungsi untuk menghitung kuadrat suatu angka
+kuadrat <- function(x) {
+  return(x^2)   # Mengembalikan nilai kuadrat dari x
+}
+```
+
+### Pemanggilan fungsi
+
+```{r}
+hasil <- kuadrat(5)  # Memanggil fungsi 'kuadrat' dengan argumen 5
+print(hasil)          # Output: 25
+```
+
+### Argumen fungsi
+
+Fungsi di R dapat menerima berbagai jenis argumen, yang bisa berupa variabel, nilai tetap, atau objek lain. Argumen juga bisa diberikan nilai default, yang berarti fungsi tetap dapat dipanggil meskipun beberapa argumen tidak diberikan nilai. Contoh argumen dengan nilai default:
+
+```{r}
+# Fungsi untuk menghitung hasil pembagian
+bagi <- function(a, b = 2) {
+  return(a / b)  # Jika b tidak diberikan, akan menggunakan nilai default 2
+}
+
+print(bagi(10))   # Output: 5 (10 dibagi 2)
+print(bagi(10, 5)) # Output: 2 (10 dibagi 5)
+```
+
+### Fungsi dengan Beberapa Nilai Kembalian
+
+Fungsi di R dapat mengembalikan lebih dari satu nilai. Salah satu cara untuk melakukan ini adalah dengan menggunakan list. Fungsi dapat mengembalikan objek yang lebih kompleks, seperti list, untuk menyimpan beberapa hasil sekaligus. Contoh fungsi dengan beberapa nilai kembalian:
+
+```{r}
+hasil_operasi <- function(a, b) {
+  hasil_penjumlahan <- a + b
+  hasil_perkalian <- a * b
+  return(list(penjumlahan = hasil_penjumlahan, perkalian = hasil_perkalian))
+}
+
+output <- hasil_operasi(4, 5)
+print(output$penjumlahan)  # Output: 9
+print(output$perkalian)    # Output: 20
+```
+
+### Fungsi Bawaan di R
+
+R menyediakan banyak fungsi bawaan untuk melakukan berbagai tugas, seperti manipulasi data, analisis statistik, dan visualisasi. Fungsi-fungsi ini sangat berguna dan sering digunakan dalam berbagai analisis. Contoh fungsi bawaan:
+
+```{r}
+# Fungsi untuk menghitung rata-rata
+rata_rata <- mean(c(1, 2, 3, 4, 5))  # Output: 3
+print(rata_rata)
+```
+
+### Fungsi Anonim
+
+Fungsi anonim adalah fungsi yang tidak memiliki nama. Fungsi jenis ini sering digunakan dalam operasi sementara atau dalam konteks tertentu, seperti dalam operasi dengan apply atau pemrograman berbasis vektor. Contoh fungsi anonim:
+
+```{r}
+# Menggunakan fungsi anonim dalam apply
+angka <- c(1, 2, 3, 4, 5)
+hasil <- sapply(angka, function(x) x^2)  # Menerapkan fungsi untuk menghitung kuadrat
+print(hasil)  # Output: 1 4 9 16 25
+```

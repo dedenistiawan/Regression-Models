@@ -1,0 +1,19 @@
+# Dasar-Dasar R {#sec-basic-R-intro .unnumbered}
+
+```{r}
+#| results: "asis"
+#| echo: false
+source("_common.R")
+```
+
+> "Why is that when one man builds a wall, the next needs to to know what's on the other side?"
+>
+> -- Tyrion Lannister-Game of Thrones
+
+R adalah bahasa pemrograman dan perangkat lunak yang dirancang khusus untuk keperluan analisis data, pengolahan statistik, dan visualisasi data. Bahasa ini menawarkan fleksibilitas untuk menulis kode guna menjalankan berbagai metode analisis statistik, mulai dari analisis statistik deskriptif hingga prediktif. Sebagai perangkat lunak, R menyediakan lingkungan interaktif untuk eksplorasi data, pengolahan, serta pembuatan laporan yang informatif. Kemampuan ini diperkuat dengan paket visualisasi yang sangat kaya seperti `ggplot2`, `lattice`, dan `plotly`, yang memungkinkan pengguna membuat grafik berkualitas tinggi. R tidak hanya membantu menganalisis data tetapi juga memvisualisasikannya dengan cara yang interaktif dan estetis, sehingga dapat menggali wawasan yang lebih dalam. R pertama kali dikembangkan pada awal 1990-an oleh **Ross Ihaka dan Robert Gentleman** di University of Auckland, Selandia Baru. Proyek ini terinspirasi oleh bahasa pemrograman S yang dikembangkan oleh John Chambers di Bell Laboratories. Pada tahun 1995, R dirilis sebagai perangkat lunak open source, sehingga memungkinkan pengembang di seluruh dunia untuk berkontribusi dalam pengembangannya.
+
+Sejak itu, R berkembang pesat dengan ribuan paket yang tersedia di [**CRAN**](https://cran.r-project.org/) (Comprehensive R Archive Network) serta repositori lainnya. Dukungan komunitas dan kontribusi aktif dari pengembang di seluruh dunia telah menjadikan R sebagai bahasa yang terus berevolusi untuk memenuhi kebutuhan analisis data modern. R memiliki salah satu komunitas pengguna paling aktif di dunia. Komunitas ini terdiri dari akademisi, peneliti, praktisi industri, hingga pengembang perangkat lunak. Forum diskusi seperti **RStudio Community**, Stack Overflow, dan mailing list R membantu pengguna menyelesaikan masalah serta berbagi ide.
+
+Ekosistem R terus berkembang dengan adanya [**RStudio**](https://posit.co/download/rstudio-desktop/) sebagai Integrated Development Environment (IDE) yang populer. Selain itu, repositori paket seperti CRAN dan [**Bioconductor**](https://www.bioconductor.org/). Bioconductor adalah sebuah platform perangkat lunak untuk analisis data genomik yang kompleks, dikembangkan khusus untuk mendukung penelitian dalam bioinformatika dan biologi komputasi. Dibangun di atas bahasa pemrograman R, Bioconductor menyediakan berbagai paket yang dirancang untuk analisis data omics, seperti genomik, proteomik, dan metabolomik. Dukungan komunitas yang besar, dokumentasi yang melimpah, dan ketersediaan sumber daya membuat R menjadi alat yang mudah diakses oleh pemula sekaligus sangat berguna bagi pengguna tingkat lanjut.
+
+R dapat diintegrasikan dengan berbagai bahasa pemrograman lain, seperti Python, C++, Java, dan SQL. Kompatibilitas ini memungkinkan pengguna untuk menggabungkan kekuatan masing-masing bahasa dalam satu proyek. Misalnya, pengguna dapat memanfaatkan Python untuk preprocessing data skala besar, kemudian menggunakan R untuk analisis statistik mendalam dan visualisasi. Selain itu, R juga mendukung integrasi dengan berbagai perangkat lunak lain seperti Excel, Tableau, dan Power BI, membuatnya menjadi bagian penting dalam alur kerja data modern.

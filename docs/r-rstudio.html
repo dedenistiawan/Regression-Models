@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Deden Istiawan">
+<title>1&nbsp; Instalasi R dan RStudio – Regresion Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./visualize.html" rel="next">
+<link href="./basic-R.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ecba78ac1d23ec93bb40517a5fbc1f6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script defer="" data-domain="r4ds.hadley.nz" src="https://plausible.io/js/plausible.js"></script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basic-R.html">Dasar-Dasar R</a></li><li class="breadcrumb-item"><a href="./r-rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalasi R dan RStudio</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Regresion Models</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/dedenistiawan/Regression-Models/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kata Pengantar</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pendahuluan</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./basic-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dasar-Dasar R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-rstudio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalasi R dan RStudio</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./visualize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualize</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Layers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./EDA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./communication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#dasar-dasar-r" id="toc-dasar-dasar-r" class="nav-link active" data-scroll-target="#dasar-dasar-r"><span class="header-section-number">1.1</span> Dasar-Dasar R</a></li>
+  <li><a href="#tipe-data-dalam-variabel" id="toc-tipe-data-dalam-variabel" class="nav-link" data-scroll-target="#tipe-data-dalam-variabel"><span class="header-section-number">1.2</span> Tipe Data dalam Variabel</a></li>
+  <li><a href="#operasi-dengan-variabel" id="toc-operasi-dengan-variabel" class="nav-link" data-scroll-target="#operasi-dengan-variabel"><span class="header-section-number">1.3</span> Operasi dengan Variabel</a></li>
+  <li><a href="#menimpa-dan-mengubah-nilai-variabel" id="toc-menimpa-dan-mengubah-nilai-variabel" class="nav-link" data-scroll-target="#menimpa-dan-mengubah-nilai-variabel"><span class="header-section-number">1.4</span> Menimpa dan Mengubah Nilai Variabel</a></li>
+  <li><a href="#struktur-data-pada-r" id="toc-struktur-data-pada-r" class="nav-link" data-scroll-target="#struktur-data-pada-r"><span class="header-section-number">1.5</span> Struktur Data pada R</a></li>
+  <li><a href="#vektor" id="toc-vektor" class="nav-link" data-scroll-target="#vektor"><span class="header-section-number">1.6</span> Vektor</a></li>
+  <li><a href="#matriks" id="toc-matriks" class="nav-link" data-scroll-target="#matriks"><span class="header-section-number">1.7</span> Matriks</a></li>
+  <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame"><span class="header-section-number">1.8</span> Data Frame</a></li>
+  <li><a href="#list" id="toc-list" class="nav-link" data-scroll-target="#list"><span class="header-section-number">1.9</span> List</a></li>
+  <li><a href="#vektor-1" id="toc-vektor-1" class="nav-link" data-scroll-target="#vektor-1"><span class="header-section-number">1.10</span> Vektor</a></li>
+  <li><a href="#fungsi-dan-pemrograman-di-r" id="toc-fungsi-dan-pemrograman-di-r" class="nav-link" data-scroll-target="#fungsi-dan-pemrograman-di-r"><span class="header-section-number">1.11</span> Fungsi dan Pemrograman di R</a></li>
+  <li><a href="#definisi-fungsi" id="toc-definisi-fungsi" class="nav-link" data-scroll-target="#definisi-fungsi"><span class="header-section-number">1.12</span> Definisi Fungsi</a></li>
+  <li><a href="#pemanggilan-fungsi" id="toc-pemanggilan-fungsi" class="nav-link" data-scroll-target="#pemanggilan-fungsi"><span class="header-section-number">1.13</span> Pemanggilan fungsi</a></li>
+  <li><a href="#argumen-fungsi" id="toc-argumen-fungsi" class="nav-link" data-scroll-target="#argumen-fungsi"><span class="header-section-number">1.14</span> Argumen fungsi</a></li>
+  <li><a href="#fungsi-dengan-beberapa-nilai-kembalian" id="toc-fungsi-dengan-beberapa-nilai-kembalian" class="nav-link" data-scroll-target="#fungsi-dengan-beberapa-nilai-kembalian"><span class="header-section-number">1.15</span> Fungsi dengan Beberapa Nilai Kembalian</a></li>
+  <li><a href="#fungsi-bawaan-di-r" id="toc-fungsi-bawaan-di-r" class="nav-link" data-scroll-target="#fungsi-bawaan-di-r"><span class="header-section-number">1.16</span> Fungsi Bawaan di R</a></li>
+  <li><a href="#fungsi-anonim" id="toc-fungsi-anonim" class="nav-link" data-scroll-target="#fungsi-anonim"><span class="header-section-number">1.17</span> Fungsi Anonim</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/dedenistiawan/Regression-Models/edit/main/r-rstudio.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/dedenistiawan/Regression-Models/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basic-R.html">Dasar-Dasar R</a></li><li class="breadcrumb-item"><a href="./r-rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalasi R dan RStudio</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-data-visualization" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Instalasi R dan RStudio</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>Untuk memulai menggunakan R, langkah pertama adalah menginstal perangkat lunaknya. Berikut langkah-langkah instalasinya:</p>
+<ol type="1">
+<li><p>Buka situs resmi <a href="https://cran.r-project.org"><strong>CRAN</strong></a> (Comprehensive R Archive Network)</p></li>
+<li><p>Pilih sistem operasi yang digunakan (Windows, macOS, atau Linux).</p></li>
+<li><p>Unduh file instalasi dan ikuti instruksi instalasinya. Unduh dan Instal RStudio</p></li>
+</ol>
+<p>Setelah R terinstal, unduh RStudio, sebuah Integrated Development Environment (IDE) untuk R, dari <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a>. Pilih versi gratis (RStudio Desktop) dan instal sesuai dengan sistem operasi Anda.</p>
+<p>RStudio adalah IDE yang dirancang khusus untuk mempermudah penggunaan R. Dibandingkan dengan antarmuka dasar R, RStudio menawarkan pengalaman pengguna yang lebih nyaman melalui fitur-fitur berikut:</p>
+<ul>
+<li><p><strong>Script Editor</strong>: Memungkinkan penulisan dan pengelolaan skrip dengan mudah.</p></li>
+<li><p><strong>Console</strong>: Tempat menjalankan perintah R secara langsung.</p></li>
+<li><p><strong>Environment Pane</strong>: Menampilkan variabel, data, dan objek yang sedang aktif.</p></li>
+<li><p><strong>Plots Pane</strong>: Menampilkan hasil visualisasi seperti grafik dan plot.</p></li>
+<li><p><strong>Packages Pane</strong>: Memudahkan instalasi dan pengelolaan pustaka.</p></li>
+</ul>
+<p><a href="https://cran.r-project.org"><strong>CRAN</strong></a> (Comprehensive R Archive Network) adalah repositori resmi yang menyimpan ribuan paket tambahan untuk memperluas fungsi R. Paket-paket ini mencakup berbagai bidang aplikasi, seperti statistik, visualisasi, dan machine learning. Untuk mengunduh dan menginstal paket di R, langkah-langkahnya adalah sebagai berikut:</p>
+<ol type="1">
+<li><p>Buka RStudio dan pastikan Anda terhubung ke internet.</p></li>
+<li><p>Gunakan perintah <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> untuk menginstal library atau paket.</p></li>
+<li><p>Setelah instalasi selesai, muat paket ke dalam sesi kerja menggunakan perintah <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Contoh:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.4.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Paket yang diunduh akan otomatis tersimpan di komputer Anda dan dapat digunakan kapan saja tanpa perlu mengunduh ulang. Dengan CRAN, pengguna dapat dengan mudah menyesuaikan R untuk berbagai kebutuhan analisis data.</p>
+<section id="dasar-dasar-r" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="dasar-dasar-r">
+<span class="header-section-number">1.1</span> Dasar-Dasar R</h2>
+<p><strong>Objek dan Variabel</strong> Dalam R, <strong>objek</strong> adalah entitas yang menyimpan data atau hasil perhitungan. Objek bisa berupa angka, teks, tabel, atau bahkan fungsi. Setiap objek di R memiliki nama yang digunakan untuk merujuknya dalam kode, dan objek ini dapat disimpan ke dalam variabel untuk memudahkan manipulasi data.</p>
+<p><strong>Variabel</strong> adalah nama yang diberikan untuk menyimpan nilai atau objek. Variabel di R tidak memerlukan deklarasi tipe data sebelumnya, yang berarti kita dapat langsung menyimpan nilai apapun ke dalam variabel tersebut.</p>
+<p>Variabel dapat dibuat dengan cara memberi nama pada objek dan menggunakan operator penugasan <code>&lt;-</code> untuk menyimpan nilai ke dalam variabel.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span>      <span class="co"># Menyimpan angka 5 dalam variabel x</span></span>
+<span><span class="va">nama</span> <span class="op">&lt;-</span> <span class="st">"John"</span>  <span class="co"># Menyimpan string "John" dalam variabel nama</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Di atas, <code>x</code> dan <code>nama</code> adalah variabel yang menyimpan objek berupa angka dan teks.</p>
+<p><strong>Mengakses Variabel</strong> Setelah variabel dibuat, kita dapat mengakses nilai yang tersimpan dalam variabel tersebut dengan cukup menyebutkan nama variabel:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>    <span class="co"># Output: 5</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">nama</span><span class="op">)</span> <span class="co"># Output: "John"</span></span>
+<span><span class="co">#&gt; [1] "John"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="tipe-data-dalam-variabel" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="tipe-data-dalam-variabel">
+<span class="header-section-number">1.2</span> Tipe Data dalam Variabel</h2>
+<p>Variabel di R dapat menyimpan berbagai tipe data, antara lain:</p>
+<ul>
+<li><p><strong>Numerik:</strong> Menyimpan angka dengan atau tanpa desimal.</p></li>
+<li><p><strong>Karakter (String):</strong> Menyimpan teks.</p></li>
+<li><p><strong>Logika:</strong> Menyimpan nilai TRUE atau FALSE.</p></li>
+<li><p><strong>Faktor:</strong> Digunakan untuk variabel kategorikal.</p></li>
+<li><p><strong>Daftar (List), Vektor, Matriks, dan Data Frame</strong>: Struktur data kompleks yang menyimpan koleksi data.</p></li>
+</ul>
+<p>Contoh variabel dengan berbagai tipe data:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">angka</span> <span class="op">&lt;-</span> <span class="fl">10</span>          <span class="co"># Numerik</span></span>
+<span><span class="va">nama</span> <span class="op">&lt;-</span> <span class="st">"Andi"</span>       <span class="co"># Karakter</span></span>
+<span><span class="va">status</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span>       <span class="co"># Logika</span></span>
+<span><span class="va">kategori</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Faktor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="operasi-dengan-variabel" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="operasi-dengan-variabel">
+<span class="header-section-number">1.3</span> Operasi dengan Variabel</h2>
+<p><strong>Operasi dengan Variabel</strong> Variabel dapat digunakan dalam operasi matematika dan logika. Misalnya, jika kita memiliki dua variabel <code>a</code> dan <code>b</code>, kita bisa melakukan operasi penjumlahan:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
+<span><span class="va">hasil</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span>  <span class="co"># Menyimpan hasil penjumlahan a dan b ke dalam variabel hasil</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">hasil</span><span class="op">)</span>    <span class="co"># Output: 7</span></span>
+<span><span class="co">#&gt; [1] 7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="menimpa-dan-mengubah-nilai-variabel" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="menimpa-dan-mengubah-nilai-variabel">
+<span class="header-section-number">1.4</span> Menimpa dan Mengubah Nilai Variabel</h2>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span>      <span class="co"># x sekarang bernilai 5</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span>     <span class="co"># x sekarang bernilai 10 (nilai sebelumnya akan tertimpa)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>    <span class="co"># Output: 10</span></span>
+<span><span class="co">#&gt; [1] 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="struktur-data-pada-r" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="struktur-data-pada-r">
+<span class="header-section-number">1.5</span> Struktur Data pada R</h2>
+<p>R menyediakan berbagai jenis struktur data untuk mengelola dan memanipulasi data dalam berbagai bentuk. Pemahaman tentang struktur data di R sangat penting karena memungkinkan kita untuk menyimpan dan bekerja dengan data yang lebih kompleks. Beberapa struktur data dasar yang tersedia di R meliputi vektor, matriks, data frame, dan list.</p>
+</section><section id="vektor" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="vektor">
+<span class="header-section-number">1.6</span> Vektor</h2>
+<p>Vektor adalah struktur data paling dasar di R. Vektor adalah sekumpulan elemen yang memiliki tipe data yang sama, seperti angka, karakter, atau logika. Vektor dapat dibuat menggunakan fungsi <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, yang berarti combine atau concatenate. Contoh pembuatan vektor:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vektor_angka</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>      <span class="co"># Vektor angka</span></span>
+<span><span class="va">vektor_karakter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>   <span class="co"># Vektor karakter</span></span>
+<span><span class="va">vektor_logika</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># Vektor logika</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mengakses elemen vektor:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vektor_angka</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>   <span class="co"># Mengakses elemen pertama (1)</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="va">vektor_karakter</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="co"># Mengakses elemen kedua ("B")</span></span>
+<span><span class="co">#&gt; [1] "B"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vektor bisa berupa vektor numerik, vektor karakter, atau vektor logika, tergantung tipe data elemen yang ada di dalamnya.</p>
+</section><section id="matriks" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="matriks">
+<span class="header-section-number">1.7</span> Matriks</h2>
+<p>Matriks adalah struktur data dua dimensi, yang berarti memiliki baris dan kolom. Semua elemen dalam matriks harus memiliki tipe data yang sama, seperti vektor. Contoh pembuatan matriks:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matriks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>  <span class="co"># Matriks 2x3 dengan elemen dari 1 hingga 6</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">matriks</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
+<span><span class="co">#&gt; [1,]    1    3    5</span></span>
+<span><span class="co">#&gt; [2,]    2    4    6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="data-frame" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="data-frame">
+<span class="header-section-number">1.8</span> Data Frame</h2>
+<p>Data frame adalah struktur data yang lebih kompleks dan sering digunakan dalam analisis data. Data frame terdiri dari kolom-kolom yang dapat memiliki tipe data yang berbeda (numerik, karakter, logika, dll.), mirip dengan tabel dalam basis data atau spreadsheet. Contoh pembuatan data frame:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Nama <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"John"</span>, <span class="st">"Alice"</span>, <span class="st">"Bob"</span><span class="op">)</span>,</span>
+<span>  Umur <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">22</span><span class="op">)</span>,</span>
+<span>  Status <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Single"</span>, <span class="st">"Married"</span>, <span class="st">"Single"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Nama Umur  Status</span></span>
+<span><span class="co">#&gt; 1  John   25  Single</span></span>
+<span><span class="co">#&gt; 2 Alice   30 Married</span></span>
+<span><span class="co">#&gt; 3   Bob   22  Single</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="list" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="list">
+<span class="header-section-number">1.9</span> List</h2>
+<p>List adalah struktur data yang paling fleksibel di R. List dapat menyimpan berbagai jenis objek yang berbeda dalam satu struktur data, termasuk vektor, matriks, data frame, atau bahkan fungsi. Contoh pembuatan list:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daftar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  Nama <span class="op">=</span> <span class="st">"John"</span>,</span>
+<span>  Umur <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  Nilai <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">88</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">daftar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $Nama</span></span>
+<span><span class="co">#&gt; [1] "John"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Umur</span></span>
+<span><span class="co">#&gt; [1] 25</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Nilai</span></span>
+<span><span class="co">#&gt; [1] 90 85 88</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="vektor-1" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="vektor-1">
+<span class="header-section-number">1.10</span> Vektor</h2>
+<p>Faktor adalah tipe data di R yang digunakan untuk menyimpan data kategorikal. Faktor menyimpan data dalam bentuk level yang dapat digunakan untuk analisis kategorikal, seperti dalam model regresi atau analisis statistik lainnya. Contoh pembuatan faktor:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">status</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Single"</span>, <span class="st">"Married"</span>, <span class="st">"Single"</span>, <span class="st">"Divorced"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">status</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] Single   Married  Single   Divorced</span></span>
+<span><span class="co">#&gt; Levels: Divorced Married Single</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Berikut adalah perbandingan antara berbagai struktur data di R:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Struktur Data</th>
+<th>Deskripsi</th>
+<th>Contoh Penggunaan</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Vektor</td>
+<td>Sekumpulan elemen dengan tipe data yang sama</td>
+<td>Menyimpan data numerik atau karakter</td>
+</tr>
+<tr class="even">
+<td>Matriks</td>
+<td>Struktur dua dimensi (baris dan kolom)</td>
+<td>Menyimpan data dalam bentuk tabel numerik</td>
+</tr>
+<tr class="odd">
+<td>Data Frame</td>
+<td>Tabel dua dimensi dengan tipe data berbeda</td>
+<td>Menyimpan data observasi dan variabel</td>
+</tr>
+<tr class="even">
+<td>List</td>
+<td>Koleksi elemen dengan tipe data yang berbeda</td>
+<td>Menyimpan objek dengan tipe data campuran</td>
+</tr>
+<tr class="odd">
+<td>Faktor</td>
+<td>Data kategorikal dengan level yang terbatas</td>
+<td>Mengelompokkan data kategorikal</td>
+</tr>
+</tbody>
+</table></section><section id="fungsi-dan-pemrograman-di-r" class="level2" data-number="1.11"><h2 data-number="1.11" class="anchored" data-anchor-id="fungsi-dan-pemrograman-di-r">
+<span class="header-section-number">1.11</span> Fungsi dan Pemrograman di R</h2>
+<p>R menyediakan berbagai cara untuk mendefinisikan dan menggunakan fungsi dalam pemrograman. Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu, menerima input, dan memberikan output. Pemrograman berbasis fungsi memungkinkan pengguna untuk menulis kode yang lebih modular dan terstruktur, yang memudahkan pemeliharaan dan pengembangan program.</p>
+</section><section id="definisi-fungsi" class="level2" data-number="1.12"><h2 data-number="1.12" class="anchored" data-anchor-id="definisi-fungsi">
+<span class="header-section-number">1.12</span> Definisi Fungsi</h2>
+<p>Fungsi di R dibuat menggunakan kata kunci <code>function()</code>. Fungsi ini dapat menerima satu atau lebih argumen dan menghasilkan nilai output. Contoh pembuatan fungsi:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fungsi untuk menghitung kuadrat suatu angka</span></span>
+<span><span class="va">kuadrat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>   <span class="co"># Mengembalikan nilai kuadrat dari x</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="pemanggilan-fungsi" class="level2" data-number="1.13"><h2 data-number="1.13" class="anchored" data-anchor-id="pemanggilan-fungsi">
+<span class="header-section-number">1.13</span> Pemanggilan fungsi</h2>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hasil</span> <span class="op">&lt;-</span> <span class="fu">kuadrat</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>  <span class="co"># Memanggil fungsi 'kuadrat' dengan argumen 5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">hasil</span><span class="op">)</span>          <span class="co"># Output: 25</span></span>
+<span><span class="co">#&gt; [1] 25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="argumen-fungsi" class="level2" data-number="1.14"><h2 data-number="1.14" class="anchored" data-anchor-id="argumen-fungsi">
+<span class="header-section-number">1.14</span> Argumen fungsi</h2>
+<p>Fungsi di R dapat menerima berbagai jenis argumen, yang bisa berupa variabel, nilai tetap, atau objek lain. Argumen juga bisa diberikan nilai default, yang berarti fungsi tetap dapat dipanggil meskipun beberapa argumen tidak diberikan nilai. Contoh argumen dengan nilai default:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fungsi untuk menghitung hasil pembagian</span></span>
+<span><span class="va">bagi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">a</span> <span class="op">/</span> <span class="va">b</span><span class="op">)</span>  <span class="co"># Jika b tidak diberikan, akan menggunakan nilai default 2</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">bagi</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>   <span class="co"># Output: 5 (10 dibagi 2)</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">bagi</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="co"># Output: 2 (10 dibagi 5)</span></span>
+<span><span class="co">#&gt; [1] 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="fungsi-dengan-beberapa-nilai-kembalian" class="level2" data-number="1.15"><h2 data-number="1.15" class="anchored" data-anchor-id="fungsi-dengan-beberapa-nilai-kembalian">
+<span class="header-section-number">1.15</span> Fungsi dengan Beberapa Nilai Kembalian</h2>
+<p>Fungsi di R dapat mengembalikan lebih dari satu nilai. Salah satu cara untuk melakukan ini adalah dengan menggunakan list. Fungsi dapat mengembalikan objek yang lebih kompleks, seperti list, untuk menyimpan beberapa hasil sekaligus. Contoh fungsi dengan beberapa nilai kembalian:</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hasil_operasi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">hasil_penjumlahan</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></span>
+<span>  <span class="va">hasil_perkalian</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>penjumlahan <span class="op">=</span> <span class="va">hasil_penjumlahan</span>, perkalian <span class="op">=</span> <span class="va">hasil_perkalian</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu">hasil_operasi</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">penjumlahan</span><span class="op">)</span>  <span class="co"># Output: 9</span></span>
+<span><span class="co">#&gt; [1] 9</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">perkalian</span><span class="op">)</span>    <span class="co"># Output: 20</span></span>
+<span><span class="co">#&gt; [1] 20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="fungsi-bawaan-di-r" class="level2" data-number="1.16"><h2 data-number="1.16" class="anchored" data-anchor-id="fungsi-bawaan-di-r">
+<span class="header-section-number">1.16</span> Fungsi Bawaan di R</h2>
+<p>R menyediakan banyak fungsi bawaan untuk melakukan berbagai tugas, seperti manipulasi data, analisis statistik, dan visualisasi. Fungsi-fungsi ini sangat berguna dan sering digunakan dalam berbagai analisis. Contoh fungsi bawaan:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fungsi untuk menghitung rata-rata</span></span>
+<span><span class="va">rata_rata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Output: 3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">rata_rata</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="fungsi-anonim" class="level2" data-number="1.17"><h2 data-number="1.17" class="anchored" data-anchor-id="fungsi-anonim">
+<span class="header-section-number">1.17</span> Fungsi Anonim</h2>
+<p>Fungsi anonim adalah fungsi yang tidak memiliki nama. Fungsi jenis ini sering digunakan dalam operasi sementara atau dalam konteks tertentu, seperti dalam operasi dengan apply atau pemrograman berbasis vektor. Contoh fungsi anonim:</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Menggunakan fungsi anonim dalam apply</span></span>
+<span><span class="va">angka</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">hasil</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">angka</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>  <span class="co"># Menerapkan fungsi untuk menghitung kuadrat</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">hasil</span><span class="op">)</span>  <span class="co"># Output: 1 4 9 16 25</span></span>
+<span><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/r4rm\.netlify\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./basic-R.html" class="pagination-link" aria-label="Dasar-Dasar R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Dasar-Dasar R</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./visualize.html" class="pagination-link" aria-label="Visualize">
+        <span class="nav-page-text">Visualize</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Regression Models was written by Deden Istiawan.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dedenistiawan/Regression-Models/edit/main/r-rstudio.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/dedenistiawan/Regression-Models/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

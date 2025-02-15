@@ -1,0 +1,44 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Regresion Models"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      Regression Models was written by Deden Istiawan.
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+  cover-image: cover.jpg
+  favicon: cover.jpg
+  site-url: https://r4rm.netlify.com/
+  repo-url: https://github.com/dedenistiawan/Regression-Models/
+  repo-branch: main
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+
+    - intro.qmd
+
+    - part: 01-basic-R.qmd
+      chapters:
+        - 01-1r-rstudio.qmd
+
+
+
+
+format:
+  html:
+    theme:
+      - cosmo
+      - r4ds.scss
+    code-link: true
+
+    author-meta: "Deden Istiawan"
+    include-in-header: "plausible.html"
+    callout-appearance: simple
+
+editor: visual
+
