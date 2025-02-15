@@ -1,1 +1,1 @@
-Sitemap: https://r4rm.netlify.com/sitemap.xml
+Sitemap: https://r4rm.netlify.app/sitemap.xml

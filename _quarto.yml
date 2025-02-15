@@ -13,7 +13,7 @@ book:
       This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.jpg
   favicon: cover.jpg
-  site-url: https://r4rm.netlify.com/
+  site-url: https://r4rm.netlify.app/
   repo-url: https://github.com/dedenistiawan/Regression-Models/
   repo-branch: main
   repo-actions: [edit, issue]
