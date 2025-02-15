@@ -1,60 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://r4rm.netlify.com/index.html</loc>
-    <lastmod>2025-02-15T16:45:12.170Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/intro.html</loc>
-    <lastmod>2025-02-15T15:54:47.802Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/whole-game.html</loc>
-    <lastmod>2024-12-30T16:06:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/data-visualize.html</loc>
-    <lastmod>2024-12-30T16:06:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/visualize.html</loc>
-    <lastmod>2024-12-30T16:06:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/layers.html</loc>
-    <lastmod>2024-12-30T16:06:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/EDA.html</loc>
-    <lastmod>2024-12-30T16:06:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/communication.html</loc>
-    <lastmod>2024-12-30T16:06:03.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/basic-R.html</loc>
-    <lastmod>2025-02-15T16:26:12.904Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/r-rstudio.html</loc>
-    <lastmod>2025-02-15T16:30:18.661Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/01-basic-R.html</loc>
-    <lastmod>2025-02-15T16:26:12.904Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.com/01-1r-rstudio.html</loc>
-    <lastmod>2025-02-15T16:53:28.272Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r4rm.netlify.app/01-1r-rstudio.html</loc>
-    <lastmod>2025-02-15T16:53:28.272Z</lastmod>
-  </url>
-  <url>
     <loc>https://r4rm.netlify.app/index.html</loc>
-    <lastmod>2025-02-15T17:07:21.592Z</lastmod>
+    <lastmod>2025-02-15T17:45:38.741Z</lastmod>
   </url>
   <url>
     <loc>https://r4rm.netlify.app/intro.html</loc>
@@ -63,5 +11,9 @@
   <url>
     <loc>https://r4rm.netlify.app/01-basic-R.html</loc>
     <lastmod>2025-02-15T16:26:12.904Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r4rm.netlify.app/01-1r-rstudio.html</loc>
+    <lastmod>2025-02-15T16:53:28.272Z</lastmod>
   </url>
 </urlset>

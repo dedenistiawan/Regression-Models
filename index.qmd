@@ -1,5 +1,6 @@
 # Kata Pengantar {.unnumbered}
 
+tambahan baru
 Buku ini ditujukan bagi mahasiswa, dosen, peneliti, serta praktisi yang ingin memahami dan mengaplikasikan model regresi menggunakan perangkat lunak R dengan pendekatan Quarto untuk dokumentasi analisis yang lebih interaktif dan reproducible.
 
 Pemodelan regresi merupakan salah satu teknik statistik yang fundamental dalam berbagai disiplin ilmu, mulai dari ekonomi, sosial, teknik, hingga kesehatan. Dengan kemampuan R sebagai perangkat lunak open-source yang kuat, pengguna dapat melakukan analisis data secara efisien serta menyajikan hasil secara profesional menggunakan Quarto. Buku ini disusun secara sistematis mulai dari konsep dasar hingga implementasi dalam berbagai kasus nyata, disertai contoh kode dan interpretasi hasil.
